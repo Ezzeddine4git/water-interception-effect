@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:4882/ -->
+<html class="" style="height: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">jquery[3.6.0];shiny-css[1.10.0];shiny-busy-indicators[1.10.0];shiny-javascript[1.10.0];font-awesome[6.5.2];selectize[0.15.2];htmltools-fill[0.5.8.1];htmlwidgets[1.6.4];datatables-css[0.0.0];datatables-binding[0.33];crosstalk[1.2.1];plotly-binding[4.10.4];shinycssloaders-binding[1.1.0];bootstrap[3.4.1];AdminLTE[2.0.6];shinydashboard[0.7.2]</script>
+<script src="./Index_files/jquery.min.js.téléchargement"></script>
+<link href="./Index_files/shiny.min.css" rel="stylesheet">
+<link href="./Index_files/busy-indicators.css" rel="stylesheet">
+<script src="./Index_files/shiny.min.js.téléchargement"></script>
+<link href="./Index_files/all.min.css" rel="stylesheet">
+<link href="./Index_files/v4-shims.min.css" rel="stylesheet">
+<link href="./Index_files/selectize.bootstrap3.css" rel="stylesheet">
+<script src="./Index_files/selectize.min.js.téléchargement"></script>
+<script src="./Index_files/selectize-plugin-a11y.min.js.téléchargement"></script>
+<link href="./Index_files/fill.css" rel="stylesheet">
+<script src="./Index_files/htmlwidgets.js.téléchargement"></script>
+<link href="./Index_files/datatables-crosstalk.css" rel="stylesheet">
+<script src="./Index_files/datatables.js.téléchargement"></script>
+<link href="./Index_files/crosstalk.min.css" rel="stylesheet">
+<script src="./Index_files/crosstalk.min.js.téléchargement"></script>
+<script src="./Index_files/plotly.js.téléchargement"></script>
+<link href="./Index_files/spinner.css" rel="stylesheet">
+<script src="./Index_files/spinner.js.téléchargement"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./Index_files/bootstrap.min.css" rel="stylesheet">
+<link href="./Index_files/bootstrap-accessibility.min.css" rel="stylesheet">
+<script src="./Index_files/bootstrap.min.js.téléchargement"></script>
+<script src="./Index_files/bootstrap-accessibility.min.js.téléchargement"></script>
+<link href="./Index_files/AdminLTE.min.css" rel="stylesheet">
+<link href="./Index_files/_all-skins.min.css" rel="stylesheet">
+<script src="./Index_files/app.min.js.téléchargement"></script>
+<link href="./Index_files/shinydashboard.css" rel="stylesheet">
+<script src="./Index_files/shinydashboard.min.js.téléchargement"></script>  <title>
+    &lt;div style="font-size: 24px; font-weight: bold; padding: 5px;"&gt;🌱 Mulch Water Retention Analysis&lt;/div&gt;
+  </title>
+  <style>
+      @media (min-width: 768px) {
+        .main-header > .navbar {
+          margin-left: 350px;
+        }
+        .main-header .logo {
+          width: 350px;
+        }
+      }
+    </style>
+  <style>
+      .main-sidebar, .left-side {
+        width: 300px;
+      }
+      @media (min-width: 768px) {
+        .content-wrapper,
+        .right-side,
+        .main-footer {
+          margin-left: 300px;
+        }
+        .main-sidebar,
+        .left-side {
+          width: 300px;
+        }
+      }
+      @media (max-width: 767px) {
+        .sidebar-open .content-wrapper,
+        .sidebar-open .right-side,
+        .sidebar-open .main-footer {
+          -webkit-transform: translate(300px, 0);
+          -ms-transform: translate(300px, 0);
+          -o-transform: translate(300px, 0);
+          transform: translate(300px, 0);
+        }
+      }
+      @media (max-width: 767px) {
+        .main-sidebar,
+        .left-side {
+          -webkit-transform: translate(-300px, 0);
+          -ms-transform: translate(-300px, 0);
+          -o-transform: translate(-300px, 0);
+          transform: translate(-300px, 0);
+        }
+      }
+      @media (min-width: 768px) {
+        .sidebar-collapse .main-sidebar,
+        .sidebar-collapse .left-side {
+          -webkit-transform: translate(-300px, 0);
+          -ms-transform: translate(-300px, 0);
+          -o-transform: translate(-300px, 0);
+          transform: translate(-300px, 0);
+        }
+      }
+    </style>
+  <style>
+        .main-header .logo { font-family: 'Arial', sans-serif; }
+        .content-wrapper { background-color: #F5FAF9; }
+        .box { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn-success { background-color: #2A665A; border-color: #1A3C34; }
+        .btn-info { background-color: #3D8B7A; border-color: #2A665A; }
+        h3, h4 { color: #1A3C34; font-weight: bold; }
+        .shiny-input-container { margin-bottom: 10px; }
+        .sidebar-menu .treeview-menu { background-color: #E8F5F2; }
+        .interpretation-box { background-color: #E8F5F2; padding: 15px; border-radius: 5px; margin-top: 10px; }
+        .mulch-info-box { background-color: #E8F5F2; padding: 15px; border-radius: 5px; margin-top: 10px; }
+        .dataTable th, .dataTable td { text-align: center; }
+        .mulch-image { max-width: 200px; height: auto; border-radius: 5px; }
+        .sidebar-toggle { float: left !important; }
+      </style>
+  <style>#spinner-bb18207d18d36086d60a1c2d43fb2662, #spinner-bb18207d18d36086d60a1c2d43fb2662:before, #spinner-bb18207d18d36086d60a1c2d43fb2662:after {   background: #0275D8; } #spinner-bb18207d18d36086d60a1c2d43fb2662 {   color: #0275D8; } #spinner-bb18207d18d36086d60a1c2d43fb2662 { font-size: 8px; }</style>
+<link href="./Index_files/jquery.dataTables.min.css" rel="stylesheet" type="text/css"><link href="./Index_files/jquery.dataTables.extra.css" rel="stylesheet" type="text/css"><script src="./Index_files/jquery.dataTables.min.js.téléchargement"></script></head>
+<body class="skin-green" style="min-height: 611px; height: auto;" data-new-gr-c-s-check-loaded="14.1251.0" data-gr-ext-installed="">
+  <div class="wrapper" style="height: auto;">
+    <header class="main-header">
+      <span class="logo">
+        <div style="font-size: 24px; font-weight: bold; padding: 5px;">🌱 Mulch Water Retention Analysis</div>
+      </span>
+      <nav class="navbar navbar-static-top" role="navigation">
+        <span style="display:none;">
+          <i class="fas fa-bars" role="presentation" aria-label="bars icon"></i>
+        </span>
+        <a href="http://127.0.0.1:4882/#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav"></ul>
+        </div>
+      </nav>
+    </header>
+    <aside id="sidebarCollapsed" class="main-sidebar shiny-bound-input" data-collapsed="false">
+      <section id="sidebarItemExpanded" class="sidebar shiny-bound-input">
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a href="http://127.0.0.1:4882/#shiny-tab-introduction" data-toggle="tab" data-value="introduction" aria-expanded="true" tabindex="0" aria-selected="true">
+              <i class="fas fa-house" role="presentation" aria-label="house icon"></i>
+              <span>Introduction</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://127.0.0.1:4882/#shiny-tab-mulch_info" data-toggle="tab" data-value="mulch_info">
+              <i class="fas fa-leaf" role="presentation" aria-label="leaf icon"></i>
+              <span>Mulch Information</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://127.0.0.1:4882/#shiny-tab-plots" data-toggle="tab" data-value="plots">
+              <i class="fas fa-chart-line" role="presentation" aria-label="chart-line icon"></i>
+              <span>Visualizations</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="http://127.0.0.1:4882/#">
+              <i class="fas fa-table" role="presentation" aria-label="table icon"></i>
+              <span>Statistics</span>
+              <i class="fas fa-angle-left pull-right" role="presentation" aria-label="angle-left icon"></i>
+            </a>
+            <ul class="treeview-menu" style="display: none;" data-expanded="Statistics">
+              <li>
+                <a href="http://127.0.0.1:4882/#shiny-tab-stats" data-toggle="tab" data-value="stats">
+                  <i class="fas fa-angles-right" role="presentation" aria-label="angles-right icon"></i>
+                  Descriptive Statistics
+                </a>
+              </li>
+              <li>
+                <a href="http://127.0.0.1:4882/#shiny-tab-corr" data-toggle="tab" data-value="corr">
+                  <i class="fas fa-angles-right" role="presentation" aria-label="angles-right icon"></i>
+                  Correlation Analysis
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="http://127.0.0.1:4882/#">
+              <i class="fas fa-calculator" role="presentation" aria-label="calculator icon"></i>
+              <span>Regression Analysis</span>
+              <i class="fas fa-angle-left pull-right" role="presentation" aria-label="angle-left icon"></i>
+            </a>
+            <ul class="treeview-menu" style="display: none;" data-expanded="RegressionAnalysis">
+              <li>
+                <a href="http://127.0.0.1:4882/#shiny-tab-regression" data-toggle="tab" data-value="regression">
+                  <i class="fas fa-angles-right" role="presentation" aria-label="angles-right icon"></i>
+                  Regression Models
+                </a>
+              </li>
+              <li>
+                <a href="http://127.0.0.1:4882/#shiny-tab-effect_sizes" data-toggle="tab" data-value="effect_sizes">
+                  <i class="fas fa-angles-right" role="presentation" aria-label="angles-right icon"></i>
+                  Effect Sizes
+                </a>
+              </li>
+              <li>
+                <a href="http://127.0.0.1:4882/#shiny-tab-posthoc" data-toggle="tab" data-value="posthoc">
+                  <i class="fas fa-angles-right" role="presentation" aria-label="angles-right icon"></i>
+                  Post-Hoc Analysis
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="http://127.0.0.1:4882/#shiny-tab-conclusion" data-toggle="tab" data-value="conclusion">
+              <i class="fas fa-book" role="presentation" aria-label="book icon"></i>
+              <span>Conclusion</span>
+            </a>
+          </li>
+          <hr>
+          <div class="form-group shiny-input-container">
+            <label class="control-label" id="plot_type-label" for="plot_type-selectized">Visualization Type:</label>
+            <div>
+              <select id="plot_type" class="shiny-input-select selectized shiny-bound-input" tabindex="-1" style="display: none;">
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="Water Retention Boxplot" selected="selected">Water Retention Boxplot</option></select><div class="shiny-input-select selectize-control single plugin-selectize-plugin-a11y"><div class="selectize-input items full has-options has-items"><div class="item" data-value="Water Retention Boxplot">Water Retention Boxplot</div><input type="text" autocomplete="new-password" autofill="no" tabindex="" id="plot_type-selectized" role="combobox" aria-expanded="false" haspopup="listbox" aria-owns="u8wbkchijj" style="width: 4px;"></div><div class="single selectize-dropdown shiny-input-select plugin-selectize-plugin-a11y" style="display: none;"><div class="selectize-dropdown-content" tabindex="-1" role="listbox" id="u8wbkchijj"></div></div></div>
+              <script type="application/json" data-for="plot_type" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+            </div>
+          </div>
+          <div class="form-group shiny-input-container">
+            <label class="control-label" id="normality_mulch-label" for="normality_mulch-selectized">Select Mulch for Normality Plots:</label>
+            <div>
+              <select id="normality_mulch" class="shiny-input-select selectized shiny-bound-input" tabindex="-1" style="display: none;">
+
+
+
+
+
+
+
+
+
+<option value="Bark pine" selected="selected">Bark pine</option></select><div class="shiny-input-select selectize-control single plugin-selectize-plugin-a11y"><div class="selectize-input items full has-options has-items"><div class="item" data-value="Bark pine">Bark pine</div><input type="text" autocomplete="new-password" autofill="no" tabindex="" id="normality_mulch-selectized" role="combobox" aria-expanded="false" haspopup="listbox" aria-owns="hk0jpey80i" style="width: 4px;"></div><div class="single selectize-dropdown shiny-input-select plugin-selectize-plugin-a11y" style="display: none;"><div class="selectize-dropdown-content" tabindex="-1" role="listbox" id="hk0jpey80i"></div></div></div>
+              <script type="application/json" data-for="normality_mulch" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+            </div>
+          </div>
+          <div id="mulch_model_select" class="form-group shiny-input-checkboxgroup shiny-input-container shiny-bound-input" role="group" aria-labelledby="mulch_model_select-label">
+            <label class="control-label" id="mulch_model_select-label" for="mulch_model_select">Select Mulch Type(s):</label>
+            <div class="shiny-options-group">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="All">
+                  <span>All Mulch Types</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Bark pine" checked="checked">
+                  <span>Bark pine</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Lava">
+                  <span>Lava</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="White Marble">
+                  <span>White Marble</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Straw">
+                  <span>Straw</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Apricot tree">
+                  <span>Apricot tree</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="1y old mix">
+                  <span>1y old mix</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Pear tree">
+                  <span>Pear tree</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Pine needle">
+                  <span>Pine needle</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Pine branches">
+                  <span>Pine branches</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="mulch_model_select" value="Leaves">
+                  <span>Leaves</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-default action-button btn btn-success shiny-bound-input" id="update" type="button">Update</button>
+          <hr>
+          <a class="btn btn-default shiny-download-link btn-info shiny-bound-output" download="" href="http://127.0.0.1:4882/session/9c2216c68bcdee7bd2ac9f85b1e21738/download/download_data?w=" id="download_data" target="_blank" aria-live="polite">
+            <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+            Download Data
+          </a>
+          <a class="btn btn-default shiny-download-link btn-info shiny-bound-output" download="" href="http://127.0.0.1:4882/session/9c2216c68bcdee7bd2ac9f85b1e21738/download/download_stats?w=" id="download_stats" target="_blank" aria-live="polite">
+            <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+            Download Stats
+          </a>
+          <a class="btn btn-default shiny-download-link btn-info shiny-bound-output" download="" href="http://127.0.0.1:4882/session/9c2216c68bcdee7bd2ac9f85b1e21738/download/download_corr?w=" id="download_corr" target="_blank" aria-live="polite">
+            <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+            Download Correlations
+          </a>
+          <hr>
+          <span class="help-block" style="color: #2A665A; font-style: italic;">Select 'All Mulch Types' to view detailed results for all 10 mulches separately. For normality plots, choose a single mulch type.</span>
+        </ul>
+      </section>
+    </aside>
+    <div class="content-wrapper" style="min-height: 936px;">
+      <section class="content">
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="shiny-tab-introduction" aria-hidden="false" tabindex="0">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Optimizing Urban Water Management Through Mulch Selection</h3>
+                  </div>
+                  <div class="box-body">
+                    <h4>Research Context</h4>
+                    <p>Urban environments face significant challenges in managing stormwater runoff, which contributes to flooding, erosion, and water quality degradation. Mulches, as permeable soil coverings, offer a sustainable solution by intercepting and retaining water, reducing runoff, and enhancing soil moisture retention. This study explores the intrinsic water retention properties of 10 mulch types, providing critical data to optimize their use in urban green infrastructure, such as rain gardens, bioswales, and permeable pavements.</p>
+                    <h4>Study Objectives</h4>
+                    <p>The primary objective is to quantify the water-holding capacities of organic (e.g., Bark pine, Leaves) and inorganic (e.g., Lava, White Marble) mulches without soil interaction. By isolating mulch performance, this research informs evidence-based selection for urban applications, balancing water retention, durability, cost, and environmental impact. The study also examines how mulch mass influences retention, offering insights into optimal application rates.</p>
+                    <h4>Methodology</h4>
+                    <p>Ten mulch types were tested at three mass levels, corresponding to approximate thicknesses of 2 cm, 4 cm, and 6 cm, in a standardized box (area: 0.0962 m²). Each mulch was saturated with water, drained, and weighed in three replicates to measure dry and wet weights. Water retention (kg) and capacity (%) were calculated to assess performance. The dataset enables comparative analysis across organic and inorganic materials, with results visualized and analyzed through this interactive dashboard.</p>
+                    <h4>Key Findings</h4>
+                    <ul>
+                      <li>Organic mulches, such as Leaves (mean capacity: ~200%) and Straw (~400%), exhibit superior water retention capacities compared to inorganic mulches like Lava (~10%) and White Marble (~5%), due to their porous, fibrous structures.</li>
+                      <li>Inorganic mulches, while less absorbent, offer exceptional durability (10+ years), making them suitable for low-maintenance urban landscapes.</li>
+                      <li>Water retention increases with mulch mass across all types, with organic mulches showing stronger linear relationships (R-squared &gt; 0.9) than inorganic ones (~0.5-0.7).</li>
+                      <li>Lightweight mulches like Pine needle and Leaves provide cost-effective retention, ideal for temporary or budget-constrained projects.</li>
+                    </ul>
+                    <h4>Applications and Impact</h4>
+                    <p>These findings guide urban planners, landscape architects, and engineers in selecting mulches to enhance stormwater management, reduce urban heat island effects, and support sustainable landscapes. By integrating mulch performance data into green infrastructure designs, cities can mitigate flooding, improve water quality, and promote ecological resilience. This dashboard facilitates interactive exploration of the data, empowering stakeholders to make informed decisions tailored to specific urban contexts.</p>
+                    <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item shiny-bound-output" id="mulch_summary_table" style="width:100%;height:auto;" aria-live="polite"><div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="DataTables_Table_0_length"><label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="DataTables_Table_0_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="DataTables_Table_0"></label></div><div id="DataTables_Table_0_processing" class="dataTables_processing" role="status" style="display: none;"><div><div></div><div></div><div></div><div></div></div></div><div class="dataTables_scroll"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;"><div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 1001px; padding-right: 0px;"><table class="display dataTable no-footer" style="margin-left: 0px; width: 1001px;"><caption>Summary of Mulch Types</caption><thead>
+    <tr><th class="dt-center sorting_disabled" rowspan="1" colspan="1" aria-label=" " style="width: 131.016px;"> </th><th class="dt-center sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mulch_Type: activate to sort column ascending" style="width: 125.781px;">Mulch_Type</th><th class="dt-center sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Material_Type: activate to sort column ascending" style="width: 146.875px;">Material_Type</th><th class="dt-center sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mean_Retention_kg: activate to sort column ascending" style="width: 197.781px;">Mean_Retention_kg</th><th class="dt-center sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mean_Capacity_Percent: activate to sort column ascending" style="width: 235.547px;">Mean_Capacity_Percent</th></tr>
+  </thead></table></div></div><div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%;"><table class="display dataTable no-footer" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info"><thead>
+    <tr style="height: 0px;"><th class="dt-center sorting_disabled" rowspan="1" colspan="1" aria-label=" " style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 131.016px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;"> </div></th><th class="dt-center sorting" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mulch_Type: activate to sort column ascending" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 125.781px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Mulch_Type</div></th><th class="dt-center sorting" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Material_Type: activate to sort column ascending" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 146.875px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Material_Type</div></th><th class="dt-center sorting" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mean_Retention_kg: activate to sort column ascending" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 197.781px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Mean_Retention_kg</div></th><th class="dt-center sorting" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mean_Capacity_Percent: activate to sort column ascending" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 235.547px;"><div class="dataTables_sizing" style="height: 0px; overflow: hidden;">Mean_Capacity_Percent</div></th></tr>
+  </thead>
+  <tbody><tr class="odd"><td class="  dt-center">1y old mix</td><td class="  dt-center">Bark pine</td><td class="  dt-center">Organic</td><td class="  dt-center">0.221</td><td class="  dt-center">34.1</td></tr><tr class="even"><td class="  dt-center">Apricot tree</td><td class="  dt-center">Lava</td><td class="  dt-center">Inorganic</td><td class="  dt-center">0.24</td><td class="  dt-center">36.9</td></tr><tr class="odd"><td class="  dt-center">Bark pine</td><td class="  dt-center">White Marble</td><td class="  dt-center">Inorganic</td><td class="  dt-center">0.386</td><td class="  dt-center">59</td></tr><tr class="even"><td class="  dt-center">Lava</td><td class="  dt-center">Straw</td><td class="  dt-center">Organic</td><td class="  dt-center">0.394</td><td class="  dt-center">12.1</td></tr><tr class="odd"><td class="  dt-center">Leaves</td><td class="  dt-center">Apricot tree</td><td class="  dt-center">Organic</td><td class="  dt-center">0.09</td><td class="  dt-center">147.7</td></tr><tr class="even"><td class="  dt-center">Pear tree</td><td class="  dt-center">1y old mix</td><td class="  dt-center">Organic</td><td class="  dt-center">0.192</td><td class="  dt-center">29.1</td></tr><tr class="odd"><td class="  dt-center">Pine branches</td><td class="  dt-center">Pear tree</td><td class="  dt-center">Organic</td><td class="  dt-center">0.072</td><td class="  dt-center">43.4</td></tr><tr class="even"><td class="  dt-center">Pine needle</td><td class="  dt-center">Pine needle</td><td class="  dt-center">Organic</td><td class="  dt-center">0.164</td><td class="  dt-center">83.7</td></tr><tr class="odd"><td class="  dt-center">Straw</td><td class="  dt-center">Pine branches</td><td class="  dt-center">Organic</td><td class="  dt-center">0.163</td><td class="  dt-center">335.8</td></tr><tr class="even"><td class="  dt-center">White Marble</td><td class="  dt-center">Leaves</td><td class="  dt-center">Organic</td><td class="  dt-center">0.2</td><td class="  dt-center">4.4</td></tr></tbody>
+</table></div><div class="dataTables_scrollFoot" style="overflow: hidden; border: 0px; width: 100%;"><div class="dataTables_scrollFootInner"><table class="display dataTable no-footer" style="margin-left: 0px;"><tfoot></tfoot></table></div></div></div><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 10 entries</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="-1" id="DataTables_Table_0_previous">Previous</a><span><a class="paginate_button current" aria-controls="DataTables_Table_0" role="link" aria-current="page" data-dt-idx="0" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0" aria-disabled="true" role="link" data-dt-idx="next" tabindex="-1" id="DataTables_Table_0_next">Next</a></div></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-mulch_info">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Mulch Type Information</h3>
+                  </div>
+                  <div class="box-body">
+                    <div id="mulch_info_content" class="shiny-html-output shiny-bound-output recalculating" aria-live="polite"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Mulch Characteristics</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item shiny-bound-output recalculating" id="mulch_characteristics_table" style="width:100%;height:auto;" aria-live="polite"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-plots">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Interactive Visualization</h3>
+                  </div>
+                  <div class="box-body">
+                    <div data-spinner-id="spinner-bb18207d18d36086d60a1c2d43fb2662" class="shiny-spinner-output-container shiny-spinner-hideui">
+                      <div class="load-container load1">
+                        <div id="spinner-bb18207d18d36086d60a1c2d43fb2662" class="loader">Loading...</div>
+                      </div>
+                      <div class="plotly html-widget html-widget-output shiny-report-size shiny-report-theme html-fill-item shiny-bound-output recalculating" id="main_plot" style="width: 100%; height: 600px; visibility: hidden;" aria-live="polite"></div>
+                    </div>
+                    <div class="interpretation-box">
+                      <h4>Analysis Explanation</h4>
+                      <div id="plot_explanation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Interpretation</h4>
+                      <div id="plot_interpretation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Observations</h4>
+                      <div id="plot_observation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Future Questions</h4>
+                      <div id="plot_future_questions" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-stats">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Descriptive Statistics</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item shiny-bound-output recalculating" id="stats_table" style="width:100%;height:auto;" aria-live="polite"></div>
+                    <div class="interpretation-box">
+                      <h4>Analysis Explanation</h4>
+                      <div id="stats_explanation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Interpretation</h4>
+                      <div id="stats_interpretation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Observations</h4>
+                      <div id="stats_observation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Future Questions</h4>
+                      <div id="stats_future_questions" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-corr">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Correlation Analysis</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item shiny-bound-output recalculating" id="corr_table" style="width:100%;height:auto;" aria-live="polite"></div>
+                    <div class="interpretation-box">
+                      <h4>Analysis Explanation</h4>
+                      <div id="corr_explanation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Interpretation</h4>
+                      <div id="corr_interpretation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Observations</h4>
+                      <div id="corr_observation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Future Questions</h4>
+                      <div id="corr_future_questions" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-regression">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Regression Models</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item shiny-bound-output recalculating" id="regression_table" style="width:100%;height:auto;" aria-live="polite"></div>
+                    <div class="interpretation-box">
+                      <h4>Analysis Explanation</h4>
+                      <div id="reg_explanation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Interpretation</h4>
+                      <div id="reg_interpretation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Observations</h4>
+                      <div id="reg_observation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Future Questions</h4>
+                      <div id="reg_future_questions" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-effect_sizes">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Effect Sizes</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item shiny-bound-output recalculating" id="effect_sizes_table" style="width:100%;height:auto;" aria-live="polite"></div>
+                    <div class="interpretation-box">
+                      <h4>Analysis Explanation</h4>
+                      <div id="effect_explanation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Interpretation</h4>
+                      <div id="effect_interpretation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Observations</h4>
+                      <div id="effect_observation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Future Questions</h4>
+                      <div id="effect_future_questions" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-posthoc">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Post-Hoc Analysis</h3>
+                  </div>
+                  <div class="box-body">
+                    <pre class="shiny-text-output noplaceholder shiny-bound-output recalculating" id="posthoc" aria-live="polite"></pre>
+                    <div class="interpretation-box">
+                      <h4>Analysis Explanation</h4>
+                      <div id="posthoc_explanation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Interpretation</h4>
+                      <div id="posthoc_interpretation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Observations</h4>
+                      <div id="posthoc_observation" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                      <h4>Future Questions</h4>
+                      <div id="posthoc_future_questions" class="shiny-text-output shiny-bound-output recalculating" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="shiny-tab-conclusion">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <h3 class="box-title">Conclusion and Future Directions</h3>
+                  </div>
+                  <div class="box-body">
+                    <h4>Research Summary</h4>
+                    <p>This study demonstrates that organic mulches, such as Leaves, Straw, and Pine needle, significantly outperform inorganic mulches like Lava and White Marble in water retention capacity, making them ideal for urban water management applications. Inorganic mulches, however, offer unmatched durability, suitable for long-term, low-maintenance landscapes. The strong linear relationships between mulch mass and retention for organic mulches (R-squared &gt; 0.9) provide reliable predictive models, while inorganic mulches show more variability, suggesting the need for tailored application strategies. These insights empower urban planners to optimize mulch selection for green infrastructure, balancing retention, cost, and longevity.</p>
+                    <h4>Practical Implications</h4>
+                    <p>By leveraging high-capacity organic mulches in rain gardens and bioswales, cities can reduce stormwater runoff, mitigate flooding, and enhance water quality. Inorganic mulches, with their aesthetic appeal and durability, are better suited for decorative landscapes or areas with minimal water retention needs. The interactive dashboard enables stakeholders to explore these trade-offs, tailoring mulch choices to specific urban contexts, such as high-traffic areas, water-scarce regions, or ecologically sensitive zones.</p>
+                    <h4>Future Research Directions</h4>
+                    <ul>
+                      <li>Investigate the impact of mulch thickness and particle size on water retention and evapotranspiration rates to refine application guidelines.</li>
+                      <li>Explore the combined effects of mulch and soil interactions in field conditions to validate laboratory findings.</li>
+                      <li>Assess the long-term environmental impacts of organic mulch decomposition, including nutrient release and carbon sequestration potential.</li>
+                      <li>Evaluate the performance of blended mulch types (organic-inorganic mixes) to optimize retention, durability, and cost.</li>
+                      <li>Study the role of mulches in mitigating urban heat island effects through evaporative cooling and surface albedo.</li>
+                    </ul>
+                    <h4>Broader Impact</h4>
+                    <p>This research contributes to the global push for sustainable urban development by providing actionable data for green infrastructure design. By integrating mulch performance into urban planning, cities can enhance resilience to climate change, improve ecological health, and create livable, water-efficient environments. The open-access nature of this dashboard ensures that researchers, policymakers, and practitioners worldwide can build upon these findings, fostering collaborative innovation in urban sustainability.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+<div aria-live="assertive" role="log" aria-relevant="additions" aria-atomic="true" style="position: absolute; width: 1px; height: 1px; margin-top: -1px; clip: rect(1px, 1px, 1px, 1px); overflow: hidden;"></div><div aria-live="assertive" role="log" aria-relevant="additions" aria-atomic="true" style="position: absolute; width: 1px; height: 1px; margin-top: -1px; clip: rect(1px, 1px, 1px, 1px); overflow: hidden;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
